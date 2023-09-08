@@ -1,0 +1,55 @@
+/* notes.css */
+
+/* Custom styles for the notes container */
+.notes-container {
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  /* Custom styles for the 'Your Notes' header */
+  .notes-container h2 {
+    margin-bottom: 20px;
+  }
+  
+  /* Custom styles for the 'No Note To Display' message */
+  .notes-container p {
+    font-style: italic;
+    text-align: center;
+  }
+  
+  /* Custom styles for the Add Note button (assuming you have a button in AddNote component) */
+  .add-note-button {
+    margin-bottom: 20px;
+  }
+  
+  /* Custom styles for the individual note items (NoteItem component) */
+  .note-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .note-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .note-description {
+    margin-top: 5px;
+    color: #e52020;
+  }
+  
+  .note-tag {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #888;
+  }
+  
+  /* Custom styles for the Edit Note modal (assuming you are using Bootstrap classes for modal) */
+  .modal-dialog {
+    max-width: 400px;
+  }
+  
+  /* Additional custom styles for the modal can be added here */
+  

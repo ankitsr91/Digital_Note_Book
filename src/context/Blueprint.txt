@@ -1,0 +1,68 @@
+noteContext.js
+
+import { createContext } from "react";
+
+//Hold all state related to our notes.
+const noteContext = createContext();
+  
+
+export default noteContext;
+
+
+----------------------------------------------------------------
+NoteState.js
+
+import react, { useState } from 'react';
+import NoteContext from './noteContext';
+
+const NoteState= (props)=>{
+
+    const s1={
+        "name": "Harry",
+        "class": "5b"
+    };
+
+    const [state,setState]=useState(s1);
+
+    const update=()=>{
+        setTimeout(()=>{
+            setState({
+                "name": "Larry",
+                "class": "10b"
+            })
+        },1000);
+    }
+
+    return (
+        <NoteContext.Provider value={{state,update}}>
+            {props.children}
+        </NoteContext.Provider>
+    )
+}
+
+
+export default NoteState;
+
+----------------------------------------------------------------
+About.js
+
+import React, { useEffect } from 'react'
+import { useContext } from 'react'
+import noteContext from '../context/notes/noteContext'
+
+const About = () => {
+    let a=useContext(noteContext)
+    useEffect(() => {
+      a.update()
+      // eslint-disable-next-line
+    }, [])
+    
+  return (
+    <div>
+      My Name is {a.state.name} and i study in {a.state.class}
+      {a.update}
+    </div>
+  )
+}
+
+export default About
