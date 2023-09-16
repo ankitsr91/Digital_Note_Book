@@ -1,7 +1,7 @@
 import React from "react";
 
-const Alert = props => {
-  const capitalize = word => {
+const Alert = (props) => {
+  const capitalize = (word) => {
     if (word === "danger") {
       word = "error";
     }

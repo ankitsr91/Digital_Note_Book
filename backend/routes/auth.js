@@ -11,6 +11,7 @@ const JWT_SECRET = "AnkitSingh";
 // ROUTE 1: Create a new user using the POST "/api/auth/createUser". No Login required.
 router.post(
   "/createuser",
+  // check this condition
   [
     body("name", "Enter a valid Name.").isLength({ min: 3 }),
     body("email", "Enter a valid Email.").isEmail(),
@@ -80,12 +81,10 @@ router.post(
       const passwordCompare = await bcrypt.compare(password, user.password);
       if (!passwordCompare) {
         success = false;
-        return res
-          .status(400)
-          .json({
-            success,
-            error: "Please try again with a valid credentials",
-          });
+        return res.status(400).json({
+          success,
+          error: "Please try again with a valid credentials",
+        });
       }
       const data = {
         user: {
@@ -103,7 +102,7 @@ router.post(
 );
 
 // ROUTE 3: get loggedin user Details using the POST "/api/auth/getUser". Login required.
-
+//fetchuser middelware hai ye fetchuser ko call karega
 router.post("/getUser", fetchuser, async (req, res) => {
   try {
     const userId = req.user.id;

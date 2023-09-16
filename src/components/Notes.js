@@ -1,43 +1,52 @@
-import React, { useContext, useEffect, useRef,useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import noteContext from "../context/notes/noteContext";
 import NoteItem from "./NoteItem";
 import AddNote from "./AddNote";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Notes = (props) => {
   const context = useContext(noteContext);
-  const { notes, getNotes,editNote} = context;
+  const { notes, getNotes, editNote } = context;
   const navigate = useNavigate();
 
   useEffect(() => {
-         if (localStorage.getItem("token")) {
-            getNotes();
-        } else {
-            navigate("/login");
-        }
+    if (localStorage.getItem("token")) {
+      getNotes();
+    } else {
+      navigate("/login");
+    }
   }, []);
+
   const ref = useRef(null);
   const refClose = useRef(null);
-  const [note, setnote] = useState({id:"",etitle:" ", edescription:" ", etag:"default"});
-  
+  const [note, setnote] = useState({
+    id: "",
+    etitle: " ",
+    edescription: " ",
+    etag: "default",
+  });
+
   const updateNote = (currentNote) => {
     ref.current.click();
-    setnote({id: currentNote._id,etitle:currentNote.title, edescription:currentNote.description, etag:currentNote.tag});
-    
+    setnote({
+      id: currentNote._id,
+      etitle: currentNote.title,
+      edescription: currentNote.description,
+      etag: currentNote.tag,
+    });
   };
 
   const handleClick = (event) => {
     // addNote(note.title,note.description,note.tag);
     // event.preventDefault();
-    editNote(note.id,note.etitle,note.edescription,note.etag);
+    editNote(note.id, note.etitle, note.edescription, note.etag);
     refClose.current.click();
-    props.showAlert("Note updated","success");
-  }; 
+    props.showAlert("Note updated", "success");
+  };
 
   const onChange = (event) => {
-      
-      setnote({...note,[event.target.name]: event.target.value});
-
+    //change the name and value dynamic.
+    setnote({ ...note, [event.target.name]: event.target.value });
   };
 
   return (
@@ -124,29 +133,41 @@ const Notes = (props) => {
             </div>
             <div className="modal-footer">
               <button
-              ref={refClose}
+                ref={refClose}
                 type="button"
                 className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
                 Close
               </button>
-              <button disabled={note.etitle.length<5 || note.edescription.length<5} type="button" className="btn btn-primary" onClick={handleClick}>
+              <button
+                disabled={
+                  note.etitle.length < 5 || note.edescription.length < 5
+                }
+                type="button"
+                className="btn btn-primary"
+                onClick={handleClick}
+              >
                 Update Note
               </button>
             </div>
           </div>
         </div>
       </div>
-
+      {/* mapping all the fetch notes */}
       <div className="row my-3">
         <h2>Your Notes</h2>
         <div className="conatiner mx-2">
-        {notes.length===0 && "No Note To Display"}
+          {notes.length === 0 && "No Note To Display"}
         </div>
         {notes.map((note) => {
           return (
-            <NoteItem key={note._id} showAlert={props.showAlert} updateNote={updateNote} note={note} />
+            <NoteItem
+              key={note._id}
+              showAlert={props.showAlert}
+              updateNote={updateNote}
+              note={note}
+            />
           );
         })}
       </div>

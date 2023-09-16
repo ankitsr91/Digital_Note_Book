@@ -10,7 +10,7 @@ const AddNote = (props) => {
     event.preventDefault();
     await addNote(note.title, note.description, note.tag);
     setNote({ title: "", description: "", tag: "" });
-    props.showAlert("Note Added Successful","success");
+    props.showAlert("Note Added Successful", "success");
   };
 
   const onChange = (event) => {
@@ -67,13 +67,13 @@ const AddNote = (props) => {
             />
           </div>
           <button
-          disabled={note.title.length < 5 || note.description.length < 5}
-          type="button"
-          onClick={handleClick}
-          className="btn btn-primary"
-        >
-          Add Note
-        </button>
+            disabled={note.title.length < 5 || note.description.length < 5}
+            type="button"
+            onClick={handleClick}
+            className="btn btn-primary"
+          >
+            Add Note
+          </button>
         </form>
       </div>
     </div>
