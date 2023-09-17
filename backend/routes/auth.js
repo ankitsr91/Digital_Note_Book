@@ -115,9 +115,3 @@ router.post("/getUser", fetchuser, async (req, res) => {
 });
 
 module.exports = router;
-//Kuch bhi dikat aa gaye toh iss liye try catch use karte hai.
-// try{
-
-// }catch{
-
-// }
